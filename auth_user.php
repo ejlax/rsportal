@@ -24,7 +24,7 @@ $_SESSION['login_url'] = $_SESSION['url']."/login?api_version=".$_SESSION['versi
 $ch = curl_init($_SESSION['login_url']);
 
 curl_setopt($ch, CURLOPT_COOKIEJAR, $_SESSION['cookie_file']);
-curl_setopt($ch, CURLOPT_USERPWD,$_SESSION['username'].':'.$_SESSION['password']);
+curl_setopt($ch, CURLOPT_USERPWD,$_SESSION['email'].':'.$_SESSION['password']);
 
 $output = curl_exec($ch);
 //echo $output;
