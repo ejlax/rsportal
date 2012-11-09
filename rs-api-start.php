@@ -1,7 +1,7 @@
 <?php
 session_start();
 $date = time();
-$myFile = 'sched/'.$_SESSION['email'].$date.".php";
+$myFile = '/sched/'.$_SESSION['email'].$date.".php";
 $handle = fopen($myFile, 'w') or die('Cannont open file: '.$myFile);
 
 /*$ch = curl_init($_SESSION['login_url']);
@@ -36,6 +36,9 @@ $handle = fopen($myFile, 'w') or die('Cannont open file: '.$myFile);
 
 fwrite($handle, $data);
 	}
+$myCron = '/etc/cron.d/rsportal';
+$handle = fopen($myCron, 'w') or die('Cannont open file: '.$myCron);
+$data = "0 7 * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myFile	
 ?>
 
 

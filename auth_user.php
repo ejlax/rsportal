@@ -16,7 +16,6 @@ $_SESSION['password'] = $rs_api['password'];
 $_SESSION['cookie_file'] = $rs_api['cookie_file'];
 $_SESSION['account'] = $rs_api['account_id'];
 $_SESSION['version'] = $rs_api['version'];
-$_SESSION['type'] = $_POST['type'];
 
 $_SESSION['url'] = "https://my.rightscale.com/api/acct/".$_SESSION['account'];
 
