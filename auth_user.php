@@ -7,7 +7,7 @@ $rs_api = array(
 	'account_id' => $_POST['account'],
 	'username' => $_POST['email'],
 	'password' => $_POST['password'],
-	'cookie_file' => 'tmp/rs_api_cookie-'.$_POST['email'].'txt',
+	'cookie_file' => 'tmp/rs_api_cookie-'.$_POST['email'].'.txt',
 	//'cookie_file' => tempnam("/tmp", "rs_api"),
 );
 
