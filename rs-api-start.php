@@ -51,7 +51,7 @@ $handle = fopen($myStopFile, 'w') or die('Cannont open file: '.$myStopFile);
 fwrite($handle, $data);
 	}
 $myStopCron = '/etc/cron.d/rsportal';
-$handle = fopen($myCron, 'a') or die('Cannont open file: '.$myStopCron);
+$handle = fopen($myStopCron, 'a') or die('Cannont open file: '.$myStopCron);
 $data = "0 ".$_GET['stopTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStopFile."\n";
 fwrite($handle, $data);
 //--- Check for files

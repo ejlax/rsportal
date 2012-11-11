@@ -131,7 +131,7 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 		<option value='12'>12:00</option>
 		</select>
 		<Label>Stop Time</label>
-		<select name='startTime'>
+		<select name='stopTime'>
 		<option value='13'>13:00</option>
 		<option value='14'>14:00</option>
 		<option value='15'>15:00</option>
