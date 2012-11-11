@@ -34,7 +34,7 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <!-- Le fav and touch icons -->
-    <!--<link rel="shortcut icon" href="../aws_portal/ico/favicon.ico">
+    <!--<link rel="shortcut icon" href="../cd _portal/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../aws_portal/img/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../aws_portal/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../aws_portal/ico/apple-touch-icon-72-precomposed.png">
@@ -107,7 +107,7 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 		//print_r($xml['server']);
 		echo "
 			<form class='form' method='get' action='rs-api-start.php'>
-			<select multiple='meultiple' name='serverid[]'>";
+			<select size=10 multiple='meultiple' name='serverid[]'>";
 		foreach($xml->server as $server){
 			$i++;
 			$nickname = (string) $server->nickname;
@@ -119,11 +119,33 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 				
 		}
 		echo "</select></br>
-		<select name='type'>
-		<option value='stop'>Stop</option>
-		<option value='start'>Start</option>
+		<Label>Start Time</label>
+		<select name='startTime'>
+		<option value='5'>05:00</option>
+		<option value='6'>06:00</option>
+		<option value='7'selected>07:00 --Default--</option>
+		<option value='8'>08:00</option>
+		<option value='9'>09:00</option>
+		<option value='10'>10:00</option>
+		<option value='11'>11:00</option>
+		<option value='12'>12:00</option>
+		</select>
+		<Label>Stop Time</label>
+		<select name='startTime'>
+		<option value='13'>13:00</option>
+		<option value='14'>14:00</option>
+		<option value='15'>15:00</option>
+		<option value='16'>16:00</option>
+		<option value='17'>17:00</option>
+		<option value='18'>18:00</option>
+		<option value='19' selected>19:00 --Default--</option>
+		<option value='20'>20:00</option>
+		<option value='21'>21:00</option>
+		<option value='22'>22:00</option>
+		<option value='23'>23:00</option>
 		</select></br>
-		<input class='btn btn-primary' type='submit' value='Submit' name='submit'>";
+		<input class='btn btn-primary' type='submit' value='Submit' name='submit'></br>
+		<h6> The default schedule is 7:00 am - 7:00 pm, Monday - Friday.";
 		  
 		 ?>         
 		
