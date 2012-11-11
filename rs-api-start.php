@@ -24,7 +24,7 @@ $handle = fopen($myStartFile, 'w') or die('Cannont open file: '.$myStartFile);
 fwrite($handle, $data);
 	}
 $myStartCron = '/etc/cron.d/rsportal';
-$handle = fopen($myStartCron, 'w') or die('Cannont open file: '.$myStartCron);
+$handle = fopen($myStartCron, 'a') or die('Cannont open file: '.$myStartCron);
 $data = "0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile."\n";
 fwrite($handle, $data);
 //------THIS IS WHER THE STOP CODE GOES
