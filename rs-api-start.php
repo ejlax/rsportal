@@ -28,6 +28,7 @@ $handle = fopen($myStartCron, 'w') or die('Cannont open file: '.$myStartCron);
 $data = "0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile."\n";
 fwrite($handle, $data);
 //------THIS IS WHER THE STOP CODE GOES
+$date = time();
 $myStopFile = 'sched/'.$_SESSION['email'].$date.".php";
 $handle = fopen($myStopFile, 'w') or die('Cannont open file: '.$myStopFile);
 
