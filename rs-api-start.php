@@ -26,7 +26,7 @@ fwrite($handle, $data);
 $myStartCron = 'sched/cron.txt';
 $handle = fopen($myStartCron, 'a') or die('Cannont open file: '.$myStartCron);
 $data = "0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile."\n";
-//exec('echo -e "`crontab -l`\n30 9 * * * /path/to/script" | crontab -');                
+exec('echo -e "`crontab -l`\n30 9 * * * /path/to/script" | crontab -');                
 fwrite($handle, $data);
 
 //------THIS IS WHER THE STOP CODE GOES
@@ -58,7 +58,7 @@ $myStopCron = 'sched/cron.txt';
 $handle = fopen($myStopCron, 'a') or die('Cannont open file: '.$myStopCron);
 $data = "0 ".$_GET['stopTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStopFile."\n";
 fwrite($handle, $data);
-exec('crontab cron.txt', $output, $return);
+exec('sudo crontab sched/cron.txt', $output, $return);
 //--- Check for files
 if(file_exists($myStopFile) && file_exists($myStartFile)){
 	echo "Your server(s) were successfully Scheduled.";
