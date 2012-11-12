@@ -58,7 +58,7 @@ $myStopCron = 'sched/cron.txt';
 $handle = fopen($myStopCron, 'a') or die('Cannont open file: '.$myStopCron);
 $data = "0 ".$_GET['stopTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStopFile."\n";
 fwrite($handle, $data);
-exec('sudo crontab cron.txt', $output, $return);
+exec('crontab cron.txt', $output, $return);
 //--- Check for files
 if(file_exists($myStopFile) && file_exists($myStartFile)){
 	echo "Your server(s) were successfully Scheduled.";
