@@ -23,7 +23,7 @@ $handle = fopen($myStartFile, 'w') or die('Cannont open file: '.$myStartFile);
 
 fwrite($handle, $data);
 	}
-$myStartCron = '/etc/cron.d/rsportal';
+$myStartCron = '/var/spool/cron/root';
 $handle = fopen($myStartCron, 'a') or die('Cannont open file: '.$myStartCron);
 $data = "0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile."\n";
 fwrite($handle, $data);
@@ -52,7 +52,7 @@ $handle = fopen($myStopFile, 'w') or die('Cannont open file: '.$myStopFile);
 
 fwrite($handle, $data);
 	}
-$myStopCron = '/etc/cron.d/rsportal';
+$myStopCron = '/var/spool/cron/root';
 $handle = fopen($myStopCron, 'a') or die('Cannont open file: '.$myStopCron);
 $data = "0 ".$_GET['stopTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStopFile."\n";
 fwrite($handle, $data);
