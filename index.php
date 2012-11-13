@@ -151,18 +151,21 @@ if($_GET['message'] == 3){
       		<p><h2>Login</h2></p>
       	</div>
       	<div class='modal-body'>
-      							<form id='form' class='form' method='post' action='schedule.php'>
+									<form id='form' class='form' method='post' action='auth_user.php'>
 										<fieldset>
-  											<label class='UsernameLabel'>Email</label>
-												<input type='email' id='Form_Email' name='email' value='' class='InputBox' required>
-												<label class='PasswordLabel'>Password</label>
-												<input type='password' id='Form_Password' name='password' value='' class='InputBox Password' required>
-												<input type='hidden' name'file' value='<?if(isset($_GET['file'])){echo $_GET['file'];} ?>'>
+  											<label class='UsernameLabel'> RightScale Email</label>
+												<input type='email' id='Form_Email' name='email' value='' class='InputBox'>
+												<label class='PasswordLabel'>Rightscale Password</label>
+												<input type='password' id='Form_Password' name='password' value='' class='InputBox Password'>
+												<select name='account'>
+													<option value='51329'>Center for Excellence</option>
+													<option value='19654'>NTC</option>
+													<option value='46971'>PDS-Dev</option>
+													<option value='46973'>PDS-Prod</option>
+												</select>
 											<input type='submit' id='Form_SignIn' name='Form/Sign_In' value='Sign In' class='btn btn-primary'>
 										</fieldset>
-										<p class='CreateAccount'>
-											<a align='left' href='#stack2' data-toggle='modal'>Forgot password?</a>
-										</p>
+										<div id='response'><!-- where login Data Goes --></div>
 									</form>
       	</div>
       </div>

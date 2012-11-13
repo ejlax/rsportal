@@ -85,9 +85,12 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 		
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $_SESSION['cookie_file']);
 		curl_setopt($ch, CURLOPT_USERPWD,$_SESSION['email'].':'.$_SESSION['password']);
-		
-		curl_exec($ch);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$output = curl_exec($ch);
 		curl_close($ch);
+		if ($output == 'Permission denied') {
+			echo "<br>Please <a href='index.php'>login</a> again.";
+		}
 		
 		$url = $_SESSION['url']."/servers?api_version=".$_SESSION['version'];
 		
@@ -140,7 +143,7 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 		</select>
 		<Label>Stop Time</label>
 		<select name='stopTime'>
-		<option value='9'>10:00</option>
+		<option value='10'>10:00</option>
 		<option value='11'>11:00</option>
 		<option value='12'>12:00</option>
 		<option value='13'>13:00</option>
