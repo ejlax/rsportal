@@ -25,9 +25,9 @@ fwrite($handle, $data);
 	}
 $myStartCron = 'sched/cron.txt';
 $handle = fopen($myStartCron, 'a') or die('Cannont open file: '.$myStartCron);
-$data = "echo -e '`crontab -l\n0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile." | crontab -'";
-//exec('echo -e "`crontab -l`\n30 9 * * * /path/to/script" | crontab -'); 
-exec($data);               
+//$data = "echo -e '`crontab -l\n0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile." | crontab -'";
+exec('echo -e "`crontab -l`\n0'.$_GET['startTime'].'  * * * wget http://rsportal.dev.sifworks.com/'.$myStartFile.' | crontab -'); 
+               
 fwrite($handle, $data);
 
 //------THIS IS WHER THE STOP CODE GOES
