@@ -23,12 +23,12 @@ $handle = fopen($myStartFile, 'w') or die('Cannont open file: '.$myStartFile);
 
 fwrite($handle, $data);
 	}
-$myStartCron = 'sched/cron.txt';
-$handle = fopen($myStartCron, 'a') or die('Cannont open file: '.$myStartCron);
-$data = "echo -e '`crontab -l\n0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile." | crontab -'";
+//$myStartCron = 'sched/cron.txt';
+//$handle = fopen($myStartCron, 'a') or die('Cannont open file: '.$myStartCron);
+//$data = "echo -e '`crontab -l\n0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile." | crontab -'";
 exec('echo -e "`crontab -l`\n0 '.$_GET['startTime'].' * *  1-5 wget http://rsportal.dev.sifworks.com/'.$myStartFile.'" | crontab -'); 
                
-fwrite($handle, $data);
+//fwrite($handle, $data);
 
 //------THIS IS WHER THE STOP CODE GOES
 sleep(1);
@@ -55,12 +55,12 @@ $handle = fopen($myStopFile, 'w') or die('Cannont open file: '.$myStopFile);
 
 fwrite($handle, $data);
 	}
-$myStopCron = 'sched/cron.txt';
-$handle = fopen($myStopCron, 'a') or die('Cannont open file: '.$myStopCron);
-$data = "0 ".$_GET['stopTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStopFile."\n";
+//$myStopCron = 'sched/cron.txt';
+//$handle = fopen($myStopCron, 'a') or die('Cannont open file: '.$myStopCron);
+//$data = "0 ".$_GET['stopTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStopFile."\n";
 exec('echo -e "`crontab -l`\n0 '.$_GET['stopTime'].' * * 1-5 wget http://rsportal.dev.sifworks.com/'.$myStopFile.'" | crontab -');
-fwrite($handle, $data);
-exec('sudo crontab sched/cron.txt', $output, $return);
+//fwrite($handle, $data);
+//exec('sudo crontab sched/cron.txt', $output, $return);
 //--- Check for files
 if(file_exists($myStopFile) && file_exists($myStartFile)){
 	echo "Your server(s) were successfully Scheduled.";
