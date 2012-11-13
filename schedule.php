@@ -106,7 +106,7 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 		
 		//print_r($xml['server']);
 		echo "
-			<form class='form' method='get' action='rs-api-start.php'>
+			<form class='form' method='get' action='rs-api-start.php' id='schedule'>
 			<select size=10 multiple='meultiple' name='serverid[]'>";
 		foreach($xml->server as $server){
 			$i++;
@@ -121,6 +121,9 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 		echo "</select></br>
 		<Label>Start Time</label>
 		<select name='startTime'>
+		<option value='2'>02:00</option>
+		<option value='3'>03:00</option>
+		<option value='4'>04:00</option>
 		<option value='5'>05:00</option>
 		<option value='6'>06:00</option>
 		<option value='7'selected>07:00 --Default--</option>
@@ -129,9 +132,17 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 		<option value='10'>10:00</option>
 		<option value='11'>11:00</option>
 		<option value='12'>12:00</option>
+		<option value='13'>13:00</option>
+		<option value='14'>14:00</option>
+		<option value='15'>15:00</option>
+		<option value='16'>16:00</option>
+		<option value='17'>17:00</option>
 		</select>
 		<Label>Stop Time</label>
 		<select name='stopTime'>
+		<option value='9'>10:00</option>
+		<option value='11'>11:00</option>
+		<option value='12'>12:00</option>
 		<option value='13'>13:00</option>
 		<option value='14'>14:00</option>
 		<option value='15'>15:00</option>
@@ -144,11 +155,10 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 		<option value='22'>22:00</option>
 		<option value='23'>23:00</option>
 		</select></br>
-		<input class='btn btn-primary' type='submit' value='Submit' name='submit'></br>
+		<input class='btn btn-primary' type='submit' value='Submit' name='submit'><img id='loading' style='display: none;' src='img/ajax-loader.gif'></br>
 		<h6> The default schedule is 7:00 am - 7:00 pm, Monday - Friday.";
-		  
-		 ?>         
-		
+		  ?>         
+		<div id='response'><h6></h6></div>
          	</div>
         </div>  	
 		<!-- <div class="table offset 3" id="instances">  -->
@@ -178,5 +188,28 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="bootstrap.js"></script>
+    <script>$('#schedule').bind('submit', function() {
+  $('#loading').show()
+});
+</script>
+<script>
+	$("#schedule").submit(function(){
+		$("#loading").submit(function(){
+    $(this).show();
+}).ajaxStop(function(){
+   $(this).hide();
+});
+    // Intercept the form submission
+    var formdata = $(this).serialize(); // Serialize all form data
+
+    // Post data to your PHP processing script
+    $.get( "rs-api-start.php", formdata, function( data ) {
+        // Act upon the data returned, setting it to #success <div>
+        $("#response").html ( data );
+    });
+
+    return false; // Prevent the form from actually submitting
+});
+</script>
   </body>
 </html>
