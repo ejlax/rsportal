@@ -25,8 +25,8 @@ fwrite($handle, $data);
 	}
 $myStartCron = 'sched/cron.txt';
 $handle = fopen($myStartCron, 'a') or die('Cannont open file: '.$myStartCron);
-//$data = "echo -e '`crontab -l\n0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile." | crontab -'";
-exec('echo -e "`crontab -l`\n0'.$_GET['startTime'].'  * * * wget http://rsportal.dev.sifworks.com/'.$myStartFile.' | crontab -'); 
+$data = "echo -e '`crontab -l\n0 ".$_GET['startTime']." * * * 1-5 wget http://rsportal.dev.sifworks.com/".$myStartFile." | crontab -'";
+exec('echo -e "`crontab -l`\n45 9 * * * /path/to/script" | crontab -'); 
                
 fwrite($handle, $data);
 
