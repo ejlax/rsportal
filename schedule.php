@@ -2,7 +2,9 @@
 //include_once('verify.php');
 require_once 'AWSSDKforPHP/sdk.class.php';
 $ec2 = new AmazonEC2();
+include_once('connect.php');
 session_start();
+//$useremail = $_POST['email'];
 if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 	echo "User is not Authenticated.";
 } 
@@ -118,8 +120,7 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 			$depl = (string) $server->deployment-href;
 			$servers = explode('servers/', $url);
 			$serverid = $servers[1];
-			echo "<option value='" .$serverid ."'>" .$nickname ."</option>";
-				
+			echo "<option value='" .$serverid ."'>" .$nickname ."</option>";		
 		}
 		echo "</select></br>
 		<Label>Start Time</label>
@@ -158,9 +159,11 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 		<option value='22'>22:00</option>
 		<option value='23'>23:00</option>
 		</select></br>
-		<input class='btn btn-primary' type='submit' value='Submit' name='submit'><img id='loading' style='display: none;' src='img/ajax-loader.gif'></br>
+		<input type='hidden' name='user' value='".$_SESSION['email']."'</input>
+		<h6> Monday - Friday <input type='checkbox' name='day[]' value='1-5' checked><h6>
+		<input class='btn btn-primary' type='submit' value='Submit ' name='submit'><img id='loading' style='display: none;' src='img/ajax-loader.gif'></br>
 		<h6> The default schedule is 7:00 am - 7:00 pm, Monday - Friday.";
-		  ?>         
+		  ?>        
 		<div id='response'><h6></h6></div>
          	</div>
         </div>  	
@@ -172,6 +175,30 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
 				</script>
 				</p>
 		    </div>
+		    <!-- <div id='schedule'>
+		    	<h3>Scheduled Servers</h3>
+		    	<?php
+		    	$sql = "SELECT server,startTime,endTime from schedule where user = '$user'";
+		    	$result = mysql_query($sql,$link);
+		    	echo "<div class='table'>";
+				echo "<table id='instances' class='table-condensed table-bordered table-striped table-hover' align='center'>";
+				echo "<thead><tr class='info'><th>Instance&nbsp;Name</th><th>InstanceId</th><th>Server&nbsp;ID</th><th>Start&nbspTime</th><th>End&nbspTime</th><th>InstanceTime</th><th>Time&nbspStopped</th><th>AZ</th><th>OS</td>";
+				echo "<tbody>";
+			foreach($xml->server as $server){
+			$i++;
+			$nickname = (string) $server->nickname;
+			$url = (string) $server->href;
+			$depl = (string) $server->deployment-href;
+			$servers = explode('servers/', $url);
+			$serverid = $servers[1];
+			echo "<option value='" .$serverid ."'>" .$nickname ."</option>";		
+				echo "<tr><td><a href='instance_info.php?instanceId=".$instanceId."'>" . $name . " </td><td><a href='instance_info.php?instanceId=".$instanceId."'>" . $instanceId . "</td><td><a href='instance_info.php?instanceId=".$instanceId."'>" . $imageId . "</td><td><a href='instance_info.php?instanceId=".$instanceId."'>" . $instanceState . "</td> <td><a href='instance_info.php?instanceId=".$instanceId."'>" . $instanceType . "</td> <td><a href='instance_info.php?instanceId=".$instanceId."'>" . $date[0]."&nbsp" .$date1[0]. " </td> <td><a href='instance_info.php?instanceId=".$instanceId."'> " . $timeStopped[0] . " </td> <td><a href='instance_info.php?instanceId=".$instanceId."'> " . $instanceLoc . "</td> <td><a href='instance_info.php?instanceId=".$instanceId."'>" . $platform . "</a></td></tr>";
+				
+				}	
+				echo "</tbody></table></div>";
+		    	
+		    	?>
+		  </div>  -->
 		</div>	
 		</div>
 
@@ -181,7 +208,7 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
       <hr>
 
       <footer align='center'>
-        <p>&copy; Company 2012</p>
+        <p>&copy; Pearson</p>
       </footer>
 
     </div><!--/.fluid-container-->
@@ -191,6 +218,7 @@ if (!$_SESSION['cookie_file'] or !$_SESSION['email']){
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="bootstrap.js"></script>
+    <script type="text/javacsript" src="js/bootstrap-datepicker.js"></script>
     <script>$('#schedule').bind('submit', function() {
   $('#loading').show()
 });
