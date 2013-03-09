@@ -2,7 +2,7 @@
 //include_once('verify.php');
 require_once 'AWSSDKforPHP/sdk.class.php';
 $ec2 = new AmazonEC2();
-include_once('connect.php');
+//include_once('connect.php');
 session_start();
 //$useremail = $_POST['email'];
 if (!$_SESSION['cookie_file'] or !$_SESSION['email']){

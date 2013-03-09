@@ -1,5 +1,5 @@
 <?php
-include_once('connect.php');
+//include_once('connect.php');
 session_start();
 if(isset($_GET['serverid'])){
 //dprint_r($_GET);/*
